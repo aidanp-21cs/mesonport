@@ -1,5 +1,5 @@
 diff --git a/mesonbuild/compilers/compilers.py b/mesonbuild/compilers/compilers.py
-index 603a3eb48..f4ef959f4 100644
+index 603a3eb48..158e08d7c 100644
 --- a/mesonbuild/compilers/compilers.py
 +++ b/mesonbuild/compilers/compilers.py
 @@ -47,7 +47,7 @@ Also add corresponding autodetection code in detect.py."""
@@ -11,3 +11,18 @@ index 603a3eb48..f4ef959f4 100644
  # Mapping of language to suffixes of files that should always be in that language
  # This means we can't include .h headers here since they could be C, C++, ObjC, etc.
  # First suffix is the language's default.
+@@ -69,12 +69,13 @@ lang_suffixes: T.Mapping[str, T.Tuple[str, ...]] = {
+     'cython': ('pyx', ),
+     'nasm': ('asm', 'nasm',),
+     'masm': ('masm',),
++    'hlasm': ('hlasm',),
+ }
+ all_languages = lang_suffixes.keys()
+ c_cpp_suffixes = {'h'}
+ cpp_suffixes = set(lang_suffixes['cpp']) | c_cpp_suffixes
+ c_suffixes = set(lang_suffixes['c']) | c_cpp_suffixes
+-assembler_suffixes = {'s', 'S', 'sx', 'asm', 'masm'}
++assembler_suffixes = {'s', 'S', 'sx', 'asm', 'masm', 'hlasm'}
+ llvm_ir_suffixes = {'ll'}
+ all_suffixes = set(itertools.chain(*lang_suffixes.values(), assembler_suffixes, llvm_ir_suffixes, c_cpp_suffixes))
+ source_suffixes = all_suffixes - header_suffixes
